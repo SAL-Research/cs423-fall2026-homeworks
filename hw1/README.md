@@ -12,7 +12,7 @@ Option A — pull the prebuilt course image (recommended, ~minutes):
 docker pull s4lbot/cs423-gem5:v25.1.0.1
 ```
 
-Option B — build it yourself from the pinned recipe (30–60 min, needs ~16 GB
+Option B — build it yourself from the pinned recipe (30–60 min, needs at least ~16 GB
 free disk during the build):
 
 ```sh
