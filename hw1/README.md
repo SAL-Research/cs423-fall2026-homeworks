@@ -16,7 +16,7 @@ Option B — build it yourself from the pinned recipe (30–60 min, needs at lea
 free disk during the build):
 
 ```sh
-cd docker && ./build.sh && cd ..
+(cd ../docker && ./build.sh)   # docker/ sits at the repo top level, one above hw1/
 ```
 
 Both produce the image `s4lbot/cs423-gem5:v25.1.0.1`. The image is
@@ -51,7 +51,7 @@ the `docker run ... ` wrapper otherwise).
 
 | Path | What it is |
 |---|---|
-| `docker/` | course-image recipe (`Dockerfile`, `build.sh`) |
+| `../docker/` | course-image recipe (`Dockerfile`, `build.sh`) — repo top level, shared by all homeworks |
 | `configs/baseline.py` | **complete** TimingSimpleCPU system — Tasks 1–2 |
 | `configs/pipeline.py` | MinorCPU **skeleton** — you finish it in Task 3 |
 | `workloads/` | three provided microbenchmarks + `Makefile` (`make -C workloads`) |

@@ -11,4 +11,4 @@ IMAGE="${CS423_IMAGE:-s4lbot/cs423-gem5:v25.1.0.1}"
 docker build -t "$IMAGE" .
 echo
 echo "Built $IMAGE for your native architecture."
-docker run --rm "$IMAGE" gem5.opt --version
+docker run --rm "$IMAGE" cat /opt/gem5/GEM5_VERSION
