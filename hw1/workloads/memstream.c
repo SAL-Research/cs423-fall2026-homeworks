@@ -1,9 +1,7 @@
 /* CS 423 HW1 — memory-touching microbenchmark.
  *
  * Walks an 8 MiB array with a 64-byte stride (one access per cache block),
- * far larger than the L1 data cache in the provided configs, so nearly every
- * load misses in the L1 and goes to DRAM. Expect CPI to be dominated by
- * memory latency on both CPU models.
+ * far larger than the L1 data cache in the provided configs.
  */
 #include <stdint.h>
 #include <stdio.h>

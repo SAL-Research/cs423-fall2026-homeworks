@@ -6,10 +6,11 @@
 #   gem5.opt --outdir=results/pipe-hello configs/pipeline.py \
 #       --cmd workloads/bin/hello
 #
-# For the Task 3 parameter probe, the --minor-param plumbing is provided:
-#   --minor-param executeInputWidth=1
-# (see `src/cpu/minor/BaseMinorCPU.py` in the gem5 tree, or the MinorCPU doc
-# page, for the parameter list.)
+# For the Task 3 parameter probe, the --minor-param plumbing is provided
+# (repeat the option to change several parameters at once), e.g.:
+#   --minor-param executeBranchDelay=2
+# The full parameter list with defaults is in the gem5 source tree inside the
+# container: /opt/gem5/src/cpu/minor/BaseMinorCPU.py
 
 import argparse
 
@@ -43,7 +44,7 @@ parser.add_argument(
     action="append",
     default=[],
     metavar="NAME=VALUE",
-    help="override one MinorCPU parameter, e.g. executeInputWidth=1 "
+    help="override one MinorCPU parameter, e.g. executeBranchDelay=2 "
     "(repeatable; used in the Task 3 parameter probe)",
 )
 args = parser.parse_args()
@@ -87,7 +88,7 @@ system.membus = SystemXBar()
 # ===========================================================================
 # ==== TODO(student) — Task 3 ===============================================
 # ===========================================================================
-# 1) Instantiate the 4-stage in-order pipelined CPU model as `system.cpu`
+# 1) Instantiate the in-order pipelined CPU model as `system.cpu`
 #    (class RiscvMinorCPU, already imported above).
 # 2) Give the CPU an L1ICache and an L1DCache and connect
 #    system.cpu.icache_port / system.cpu.dcache_port to them, then connect
@@ -101,6 +102,17 @@ raise NotImplementedError(
 # ===========================================================================
 # ==== end TODO(student) ====================================================
 # ===========================================================================
+
+# provided: a SCALAR (1-wide) in-order pipeline, the textbook model this
+# homework studies. gem5's MinorCPU defaults to 2-wide: Fetch2 and Decode
+# pass on, and Execute issues and commits, up to two instructions per cycle.
+# These four parameters bring every stage down to one instruction per cycle.
+# Leave them as they are for the numbers you report in Tasks 3.1, 3.2, and 4;
+# the Task 3.3 parameter probe may override them with --minor-param
+# (overrides are applied afterwards).
+for name in ("decodeInputWidth", "executeInputWidth",
+             "executeIssueLimit", "executeCommitLimit"):
+    setattr(system.cpu, name, 1)
 
 # provided plumbing: apply --minor-param NAME=VALUE overrides
 for override in args.minor_param:

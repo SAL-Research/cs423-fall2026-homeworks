@@ -2,7 +2,7 @@
 # CS 423 HW1 — reproducibility entry point (Deliverable 5).
 #
 # THIS SCRIPT MUST REGENERATE EVERY NUMBER AND PLOT IN YOUR REPORT when run
-# inside the pinned course container from the starter root:
+# inside the pinned course container from the hw1/ directory:
 #   docker run --rm -u "$(id -u):$(id -g)" -v "$PWD":/hw -w /hw \
 #       s4lbot/cs423-gem5:v25.1.0.1 bash reproduce.sh
 #

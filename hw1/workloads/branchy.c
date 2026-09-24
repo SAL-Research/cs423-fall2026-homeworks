@@ -2,8 +2,7 @@
  *
  * A tight loop whose branch direction depends on pseudo-random data
  * (xorshift PRNG evaluated in-loop), so the conditional branch is
- * inherently hard to predict. Compare its CPI on the pipelined CPU
- * against compute.c to see the cost of control hazards.
+ * inherently hard to predict.
  */
 #include <stdint.h>
 #include <stdio.h>

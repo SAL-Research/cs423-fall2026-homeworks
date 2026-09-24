@@ -1,10 +1,10 @@
 /* CS 423 HW1 — compute-bound microbenchmark.
  *
  * Integer ALU work on four *independent* accumulators: almost no memory
- * traffic beyond the instruction stream, and no long dependency chains.
- * Expect this workload to come closest to the CPU's best-case CPI.
+ * traffic beyond the instruction stream, and no long dependency chains
+ * across the accumulators.
  *
- * ~2M iterations x ~14 ALU ops ≈ 30M dynamic instructions.
+ * 2M iterations x ~13 instructions ≈ 26M dynamic instructions.
  */
 #include <stdint.h>
 #include <stdio.h>

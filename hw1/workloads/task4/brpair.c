@@ -1,22 +1,21 @@
 /* CS 423 HW1 — Task 4.2 template: control-hazard microbenchmark pair.
  *
  * YOUR JOB (see handout Task 4.2):
- *   Implement two loops with IDENTICAL bodies that differ only in whether
- *   their conditional branch is predictable:
- *     loop_predictable   — branch direction follows a trivially learnable
- *                          pattern (the scaffold pre-fills pattern[] with
- *                          a repeating pattern).
- *     loop_unpredictable — branch direction is pseudo-random (the scaffold
- *                          pre-fills random_bits[] from xorshift64).
+ *   Implement the body of run_loop(): a conditional branch on cond[i] with
+ *   cheap work on each path. The SAME loop runs over one of two precomputed
+ *   condition arrays, selected on the command line:
+ *     pred — pattern[]:     a repeating, easily learnable pattern;
+ *     rand — random_bits[]: pseudo-random bits (xorshift64).
  *
- *   Predict, then measure on MinorCPU: CPI of each loop and the branch-
- *   predictor stats (system.cpu.branchPred.*) — see handout for the exact
- *   stat names to report. The condition data is PRECOMPUTED into arrays so
- *   both loops execute the same instructions; only branch OUTCOMES differ.
+ *   Predict, then measure on MinorCPU: the CPI of each variant and the
+ *   branch-predictor stats (system.cpu.branchPred.*) — see the handout for
+ *   the exact stat names to report. Because the condition data is
+ *   PRECOMPUTED, both variants run the same static code; only the branch
+ *   OUTCOMES differ (and with them, which path's instructions execute).
  *
- * The file compiles and runs as shipped; the loop bodies below are
- * placeholders that you must complete (currently they don't branch on the
- * array at all, so both loops behave identically — not a valid answer).
+ * The file compiles and runs as shipped; the loop body below is a
+ * placeholder that you must complete (it does not branch on the array at
+ * all, so both variants behave identically — not a valid answer).
  *
  * NOTE: compile with the provided Makefile (it uses -O1 for this file, to
  * keep gcc from turning your if() into branch-free code).
@@ -32,7 +31,7 @@ static uint8_t random_bits[N];  /* unpredictable: ~50/50 random     */
 static void fill(void) {
     uint64_t x = 88172645463325252UL;
     for (uint64_t i = 0; i < N; i++) {
-        pattern[i] = (i & 7) != 0;      /* T T T T T T T N T T T ... */
+        pattern[i] = (i & 7) != 0;      /* 0 1 1 1 1 1 1 1 0 1 1 ... */
         x ^= x << 13; x ^= x >> 7; x ^= x << 17;
         random_bits[i] = (uint8_t)(x & 1);
     }

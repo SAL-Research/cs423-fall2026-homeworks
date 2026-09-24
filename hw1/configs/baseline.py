@@ -72,7 +72,7 @@ system.mem_mode = "timing"
 system.mem_ranges = [AddrRange("512MiB")]
 
 # CPU: TimingSimpleCPU — fetches, executes, and completes ONE instruction
-# before starting the next (no overlap). Our "single-cycle-like" baseline.
+# before starting the next (no overlap). Our non-pipelined baseline.
 system.cpu = RiscvTimingSimpleCPU()
 
 system.cpu.icache = L1ICache()

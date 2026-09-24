@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # CS 423 HW1 — runs every experiment the report needs. Run INSIDE the course
-# container from the starter root:
+# container from the hw1/ directory:
 #   bash scripts/run_all.sh
 #
 # Results land in results/<cpu>-<workload>[-<variant>]/stats.txt — this naming
@@ -14,11 +14,12 @@ cd "$(dirname "$0")/.."
 
 make -C workloads
 
-run() { # run <outdir-tag> <config> <binary> [workload-args]
+run() { # run <outdir-tag> <config> <binary> [workload-args] [config-options...]
     local tag="$1" cfg="$2" bin="$3" wargs="${4:-}"
+    shift $(( $# < 4 ? $# : 4 ))
     echo "== $tag =="
     gem5.opt --outdir="results/$tag" "configs/$cfg" \
-        --cmd "workloads/bin/$bin" ${wargs:+--args "$wargs"} \
+        --cmd "workloads/bin/$bin" ${wargs:+--args "$wargs"} "$@" \
         || echo "!! $tag FAILED (fine if you haven't finished that task yet)"
 }
 
@@ -32,11 +33,9 @@ run pipe-compute   pipeline.py compute
 run pipe-memstream pipeline.py memstream
 run pipe-branchy   pipeline.py branchy
 
-# Task 3 — parameter probe (edit the parameter/value you chose)
-run pipe-compute-probe pipeline.py compute "" # e.g. add: --minor-param executeInputWidth=1
-# ^ replace the line above with e.g.:
-# gem5.opt --outdir=results/pipe-compute-probe configs/pipeline.py \
-#     --cmd workloads/bin/compute --minor-param executeInputWidth=1
+# Task 3 — parameter probe: uncomment and edit (workload, parameter, value).
+# Everything after the (here empty) workload-args "" is passed to the config:
+# run pipe-<workload>-probe pipeline.py <workload> "" --minor-param NAME=VALUE
 
 # Task 4.1 — load-use kernels on BOTH CPUs
 run base-loaduse-dep baseline.py loaduse dep

@@ -6,7 +6,7 @@ Usage (inside the container, after scripts/run_all.sh):
 
 Produces:
     plots/cpi.png       CPI per workload, baseline vs pipeline (grouped bars)
-    plots/speedup.png   pipeline speedup per workload (simSeconds ratio)
+    plots/cpi_normalized.png   pipeline CPI normalized to baseline CPI
 
 Only the three main workloads are plotted automatically; plot your Task 4
 runs with your own variations of this script (that's part of the exercise).
@@ -70,31 +70,33 @@ def main():
     fig.tight_layout()
     fig.savefig(args.outdir / "cpi.png")
 
-    # ---- speedup ----------------------------------------------------------
+    # ---- pipeline CPI normalized to baseline CPI ---------------------------
+    # Both CPUs run at the same clock, so this is a CPI ratio, NOT the
+    # speedup of a pipelined design (which also depends on the clock period).
     fig, ax = plt.subplots(figsize=(6.4, 3.2), dpi=150)
     style(ax)
-    speedups = []
+    ratios = []
     for w in WORKLOADS:
         try:
-            s = (float(data[("base", w)]["simSeconds"])
-                 / float(data[("pipe", w)]["simSeconds"]))
+            r = (float(data[("pipe", w)]["cpi"])
+                 / float(data[("base", w)]["cpi"]))
         except (KeyError, ZeroDivisionError, ValueError):
-            s = 0.0
-        speedups.append(s)
-    ax.bar(x, speedups, 0.5, color=COLORS["pipe"], zorder=3)
-    for i, s in enumerate(speedups):
-        if s:
-            ax.text(i, s, f"{s:.2f}x", ha="center", va="bottom",
+            r = 0.0
+        ratios.append(r)
+    ax.bar(x, ratios, 0.5, color=COLORS["pipe"], zorder=3)
+    for i, r in enumerate(ratios):
+        if r:
+            ax.text(i, r, f"{r:.2f}", ha="center", va="bottom",
                     fontsize=8, color=INK2)
     ax.axhline(1.0, color=INK2, linewidth=0.8, linestyle="--")
     ax.set_xticks(list(x), WORKLOADS)
-    ax.set_ylabel("speedup (sim. time ratio)", color=INK)
-    ax.set_title("MinorCPU speedup over TimingSimpleCPU", color=INK,
-                 fontsize=11)
+    ax.set_ylabel("pipeline CPI / baseline CPI\n(lower is better)", color=INK)
+    ax.set_title("MinorCPU CPI normalized to TimingSimpleCPU CPI (same clock)",
+                 color=INK, fontsize=11)
     fig.tight_layout()
-    fig.savefig(args.outdir / "speedup.png")
+    fig.savefig(args.outdir / "cpi_normalized.png")
 
-    print(f"wrote {args.outdir}/cpi.png and {args.outdir}/speedup.png")
+    print(f"wrote {args.outdir}/cpi.png and {args.outdir}/cpi_normalized.png")
 
 
 if __name__ == "__main__":

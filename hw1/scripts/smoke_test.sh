@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # CS 423 HW1 — end-to-end smoke test. Run INSIDE the course container from
-# the starter root:
+# the hw1/ directory:
 #   bash scripts/smoke_test.sh
 # Expected: workloads build, gem5 runs hello on the baseline CPU, and the
-# script prints the three headline stats. Takes well under a minute.
+# script prints the four headline stats. Takes well under a minute.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
