@@ -62,7 +62,8 @@ the `docker run ... ` wrapper otherwise).
 | `scripts/plot_results.py` | `summary.csv` → `plots/cpi.png`, `plots/cpi_normalized.png` |
 | `scripts/trace_pipeline.sh` | short MinorTrace capture — Task 3 stall hunt |
 | `reproduce.sh` | your one-shot reproducibility script (Deliverable 5) |
-| `report/report-template.md` | required report structure — Task 5 |
+| `report/report-template.md` | required report structure — the report is a grading gate |
+| `AI_USAGE.md` | your GenAI usage log (write `None.` if you used none) — required |
 
 ## 4. Everyday commands
 
@@ -83,6 +84,9 @@ python3 scripts/plot_results.py results/summary.csv -o plots
 # pipeline trace window (after Task 3 is done)
 bash scripts/trace_pipeline.sh workloads/bin/loaduse dep
 ```
+
+`run_all.sh` writes each run's gem5 output to `results/<tag>/run.log`
+instead of the terminal; look there when a run fails.
 
 Interesting stats in `results/<tag>/stats.txt`: `simInsts`, `simSeconds`,
 `hostSeconds`, `system.cpu.numCycles`, and (MinorCPU only)

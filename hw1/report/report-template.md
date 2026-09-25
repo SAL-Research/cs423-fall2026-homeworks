@@ -1,14 +1,17 @@
 # CS 423 HW1 report template
 
-Convert to PDF for submission with any tool on your host machine (LaTeX,
-Word/Google Docs export, pandoc, ...) — keep the section structure below.
-Page guide: 4–7 pages including plots.
+The report is REQUIRED and is how every task is graded: an answer, number, or
+plot that is not in the report earns no points, and a submission without a
+report is not graded. Convert it to PDF (`report.pdf`) with any tool on your
+host machine (LaTeX, Word/Google Docs export, pandoc, ...) and keep the
+section structure below. Page guide: 4–7 pages including plots.
 
 ---
 
 ## 0. Setup statement (Task 1)
 
-- Docker image and tag used; host OS and architecture.
+- Docker image and tag used; host OS and architecture; the environment block
+  (gem5, cross-gcc, and Python versions) printed by `scripts/smoke_test.sh`.
 - The smoke-test numbers for `hello` on the baseline CPU: `simInsts`,
   `system.cpu.numCycles`, `simSeconds`, and `hostSeconds`.
 - Answers to Q1.1–Q1.4.
@@ -25,8 +28,9 @@ Page guide: 4–7 pages including plots.
   data), plus the CPI and IPC of both CPUs, the pipeline's CPI normalized to
   the baseline's CPI for each workload, and your mechanism-level
   explanation (Task 3.1).
-- Answers to Q3.1–Q3.3: computed clock periods and execution-time ratios,
-  with your arithmetic shown.
+- Answers to Q3.1–Q3.4: computed clock periods and execution-time ratios,
+  with your arithmetic shown, and the comparison of the simulated
+  non-pipelined CPU with the single-cycle design.
 - Parameter probe: which MinorCPU parameter(s) you changed, the values, the
   CPI effect, and the mechanism-level explanation.
 - MinorTrace: the stall you found; quote the trace lines (a few lines, not
@@ -40,13 +44,7 @@ For each of 4.1 (load-use) and 4.2 (branch pair):
 - Your answers to the questions in the handout, explained at the level of
   mechanisms.
 
-## 4. Non-pipelined CPU vs. single-cycle design (Task 5)
-
-- How the simulated non-pipelined CPU (`TimingSimpleCPU`) differs from the
-  single-cycle design of Task 3.2, and whether the difference affects your
-  conclusions in Section 2.
-
-## 5. Reproducibility statement
+## 4. Reproducibility statement
 
 - Exact commands, or "run `bash reproduce.sh` in the pinned container".
 - Anything nonstandard about your environment.
@@ -54,4 +52,4 @@ For each of 4.1 (load-use) and 4.2 (branch pair):
 ## GenAI disclosure
 
 Per the course policy: state what (if any) GenAI assistance you used and for
-which parts.
+which parts. Keep this consistent with your `AI_USAGE.md` log.

@@ -14,13 +14,25 @@ cd "$(dirname "$0")/.."
 
 make -C workloads
 
+# Each run's gem5 output goes to results/<tag>/run.log instead of the terminal.
 run() { # run <outdir-tag> <config> <binary> [workload-args] [config-options...]
     local tag="$1" cfg="$2" bin="$3" wargs="${4:-}"
     shift $(( $# < 4 ? $# : 4 ))
     echo "== $tag =="
+    mkdir -p "results/$tag"   # the log is opened before gem5 creates the dir
     gem5.opt --outdir="results/$tag" "configs/$cfg" \
         --cmd "workloads/bin/$bin" ${wargs:+--args "$wargs"} "$@" \
-        || echo "!! $tag FAILED (fine if you haven't finished that task yet)"
+            > "results/$tag/run.log" 2>&1 \
+        || { echo "!! $tag FAILED -- expected ONLY for pipe-* runs before you" \
+                  "finish Task 3 (configs/pipeline.py). A failing base-* run means" \
+                  "something is wrong with your environment, not with your progress."
+             echo "   gem5 output is in results/$tag/run.log. The error:"
+             # gem5's stderr is unbuffered but its redirected stdout is not, so
+             # the error sits near the TOP of the log: grep first, tail as a
+             # fallback (the fallback relies on `set -o pipefail` above).
+             grep -m4 -E "Error|error:|Traceback|Exception" "results/$tag/run.log" \
+                 | sed "s/^/   | /" \
+                 || tail -n 6 "results/$tag/run.log" | sed "s/^/   | /"; }
 }
 
 # Task 2 — baseline characterization

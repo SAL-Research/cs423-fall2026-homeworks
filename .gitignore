@@ -3,4 +3,5 @@ __pycache__/
 *.pyc
 .DS_Store
 m5out/
-workloads/bin/
+**/workloads/bin/
+plots/

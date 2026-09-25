@@ -13,9 +13,14 @@ runs with your own variations of this script (that's part of the exercise).
 """
 import argparse
 import csv
+import os
 from pathlib import Path
 
-import matplotlib
+# The container runs as the student's host uid, which has no home directory;
+# without this, matplotlib warns about an unwritable config dir on every run.
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
+
+import matplotlib  # noqa: E402
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
