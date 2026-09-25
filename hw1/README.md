@@ -4,6 +4,10 @@ Everything here runs inside the **pinned course container** — gem5 v25.1.0.1
 (RISC-V, `gem5.opt`) plus the `riscv64-linux-gnu` cross toolchain. Read the
 handout PDF for the tasks; this README is only environment + commands.
 
+Questions? Use the HW1 discussion forum:
+https://github.com/SAL-Research/comparch-fall-2026/discussions/categories/hw1
+(no solutions, code, configurations, or measurements there).
+
 ## 1. Get the environment (once)
 
 Option A — pull the prebuilt course image (recommended, ~minutes):

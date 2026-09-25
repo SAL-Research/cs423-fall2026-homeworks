@@ -37,3 +37,8 @@ your working copy.
 
 See each handout: GenAI policy, late policy (10%/week), individual work —
 no partners. Submission is via Moodle.
+
+## Questions
+
+Each homework has a discussion category on the course website's GitHub
+Discussions, e.g. HW1: https://github.com/SAL-Research/comparch-fall-2026/discussions/categories/hw1
