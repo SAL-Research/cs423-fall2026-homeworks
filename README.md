@@ -33,6 +33,10 @@ Each `hwN/` directory contains `handout.pdf` (read this first) and the
 starter files it describes. Results you generate stay on your machine, in
 your working copy.
 
+`bonus1/` (critical paper reviews) needs no Docker: read `bonus1/handout.pdf`
+and write each review in `bonus1/review-template.tex`. The paper list is on the
+course website: https://sal-research.github.io/comparch-fall-2026/homeworks.html#bonus-papers
+
 ## Policies
 
 See each handout: GenAI policy, late policy (10%/week), individual work —

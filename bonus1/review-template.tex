@@ -1,0 +1,147 @@
+% CS 423/520 Computer Architecture, Fall 2026: Bonus HW, Critical Paper Review
+%
+% How to use this template
+%   1. Fill in the five fields below (name, student ID, paper key, title, venue).
+%   2. Replace every placeholder text in the sections with your review.
+%   3. Compile with pdflatex (or upload this file to Overleaf) and check that
+%      the PDF has at most two pages.
+%   4. Name the PDF  review_<studentID>_<paperkey>.pdf  and upload it to Moodle.
+%
+% Do NOT change anything above the line "FILL IN BELOW": no other font, font
+% size, margins, line spacing, or page size. Do NOT remove or rename sections.
+% A review longer than two pages gets 0 points.
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist{nosep,leftmargin=2.2em}
+
+% Section headings: fixed titles, compact spacing.
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{0pt}%
+  {6pt plus 2pt}{2pt}{\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
+  {3pt plus 1pt}{1pt}{\normalsize\bfseries}}
+\makeatother
+\newcommand{\summaryitem}[1]{\par\smallskip\textbf{#1.}\ }
+
+\newcommand{\reviewer}[1]{\def\theReviewer{#1}}
+\newcommand{\studentid}[1]{\def\theStudentID{#1}}
+\newcommand{\paperkey}[1]{\def\thePaperKey{#1}}
+\newcommand{\papertitle}[1]{\def\thePaperTitle{#1}}
+\newcommand{\papervenue}[1]{\def\thePaperVenue{#1}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small CS 423/520 Bonus HW: Paper Review}
+\fancyhead[R]{\small\texttt{\thePaperKey}\quad\theStudentID}
+\fancyfoot[C]{\small\thepage/\pageref*{LastPage}}
+
+% Visible warning when the review is longer than two pages.
+\AtEndDocument{%
+  \ifnum\value{page}>2
+    \par\bigskip\noindent\fcolorbox{red}{red!8}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+      \color{red}\bfseries This review is longer than two pages. Reviews longer
+      than two pages get 0 points. Shorten it before you submit.}}%
+  \fi}
+
+% ============================== FILL IN BELOW ===============================
+\reviewer{Your Name}
+\studentid{XXXXXXXX}
+\paperkey{e.g., kim2014flipping}   % the key of the paper, exactly as on the paper list
+\papertitle{The full title of the paper that you review}
+\papervenue{ISCA 2014}       % venue and year, as on the paper list
+% ============================================================================
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries \thePaperTitle}\\[2pt]
+  {\small \thePaperVenue\quad$\bullet$\quad Paper key: \texttt{\thePaperKey}}\\[2pt]
+  {\small Reviewed by \theReviewer\ (\theStudentID)}
+\end{center}
+
+% ---------------------------------------------------------------------------
+\section*{Summary}
+% Write the summary in your own words, in this order. Do not copy sentences
+% from the paper. One to three sentences per item is usually enough.
+
+\summaryitem{Problem \& Goal}
+What problem does the paper solve? Why is it important? What does the paper want to achieve?
+
+\summaryitem{Key Ideas/Solution}
+What is the main idea of the solution, in one or two sentences?
+
+\summaryitem{Novelty}
+What is new in this paper? What did nobody do before?
+
+\summaryitem{Mechanisms \& Implementation}
+How does the solution work? What hardware or software does it need?
+
+\summaryitem{Major Results}
+What are the most important results? Give numbers and say what they are compared to.
+
+\summaryitem{Takeaways/Conclusions}
+What should a reader remember from this paper?
+
+\summaryitem{State of the Art Before This Paper}
+What were the best solutions before this paper, and why were they not good enough?
+
+% ---------------------------------------------------------------------------
+\section*{Strengths}
+% The most important strengths, in a short list. One or two sentences each.
+% At least three.
+\begin{enumerate}
+  \item First strength.
+  \item Second strength.
+  \item Third strength.
+\end{enumerate}
+
+% ---------------------------------------------------------------------------
+\section*{Weaknesses}
+% The most important weaknesses, in a short list. One or two sentences each.
+% At least three.
+\begin{enumerate}
+  \item First weakness.
+  \item Second weakness.
+  \item Third weakness.
+\end{enumerate}
+
+% ---------------------------------------------------------------------------
+\section*{Comments for the Authors}
+% One paragraph for each weakness above, with the same number (Weakness 1, 2, ...).
+% Define the weakness clearly and precisely, and give an example.
+\subsection*{Weakness 1}
+Explain the first weakness: what exactly is missing or wrong, why it matters, and an example.
+\subsection*{Weakness 2}
+Explain the second weakness: what exactly is missing or wrong, why it matters, and an example.
+\subsection*{Weakness 3}
+Explain the third weakness: what exactly is missing or wrong, why it matters, and an example.
+
+
+% ---------------------------------------------------------------------------
+\section*{Thoughts/Ideas}
+% Your own thinking. Answer the questions that matter most for this paper,
+% for example: What did you learn, enjoy, or dislike, and why? Can you do
+% better? How would you eliminate the weaknesses you found? Do you have a
+% fundamentally different solution to the same problem? Does the paper bring
+% new problems, and how would you solve them?
+Your thoughts and ideas. Include at least one concrete idea: what you would change, and how you would test whether it works.
+
+% ---------------------------------------------------------------------------
+\section*{GenAI Statement}
+% One line. Examples: "I did not use GenAI tools." or
+% "I used <tool> only to proofread the final text."
+I did not use GenAI tools.
+
+\end{document}
