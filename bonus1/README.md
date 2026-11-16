@@ -39,3 +39,5 @@ Run it twice, so that the page count in the footer is correct.
 **Compile on Overleaf:** New Project → Upload Project → choose `review-template-overleaf.zip`.
 
 **Deadline:** December 27, 2026, 23:59 (Ankara time). No late submissions.
+
+**Questions:** [Bonus HW discussion forum](https://github.com/SAL-Research/comparch-fall-2026/discussions/categories/bonus-hw-paper-reviews). Do not post any part of your review there.
